@@ -11,12 +11,12 @@ Client Registration: https://developers.facebook.com/apps
 What I need:
   appId = OAuth ClientID = (see my Facebook app page)
   appSecret = OAuth ClientSecret = (see my Facebook app page)
-  redirectURI = https://api.jimtough.org/
-  URLENCODE(redirectURI) = https%3A%2F%2Fapi.jimtough.org%2F
+  redirectURI = https://api.jimtough.org/oauth
+  URLENCODE(redirectURI) = https%3A%2F%2Fapi.jimtough.org%2Foauth%2F
 
 ----
 
-Authorization Endpoint (Browser): https://www.facebook.com/v6.0/dialog/oauth?client_id=XXXXXXXXXX&redirect_uri=https%3A%2F%2Fapi.jimtough.org%2F&state=987654321
+Authorization Endpoint (Browser): https://www.facebook.com/v6.0/dialog/oauth?client_id=XXXXXXXXXX&redirect_uri=https%3A%2F%2Fapi.jimtough.org%2Foauth%2F&state=987654321
 
 What you need to extract from the response:
 - code =
@@ -25,7 +25,7 @@ What you need to extract from the response:
 
 Token Endpoint (non-standard, uses GET instead of POST):
 
-curl -ik "https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri=https%3A%2F%2Fapi.jimtough.org%2F&client_id=XXXXXXXXXX&client_secret=YYYYYYYYYY&code=ZZZZZZ"
+curl -ik "https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri=https%3A%2F%2Fapi.jimtough.org%2Foauth%2F&client_id=XXXXXXXXXX&client_secret=YYYYYYYYYY&code=ZZZZZZ"
 
 What you need from the response:
 - access_token =
