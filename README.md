@@ -180,6 +180,28 @@ High-level steps:
   * Get the Token
   * Use the Token to Access a Resource
 
+----
+
+# Using OAuth to access Facebook
+
+## Registering my Client (my app) to use the Facebook OAuth server
+
+  1.  First step, sign up for Facebook if you don't already have an account.
+  2.  Next step, go here: https://developers.facebook.com/apps/
+  3.  Click the "Create App" button/link/thing.
+  4.  Enter whatever you like for "Display Name".
+  5.  Click "Create App ID" button.
+  6.  After the app creation process is complete, you should be presented with an app page that has a lot of options.
+  7.  Expand the 'Settings' option on the left-side navigation bar, and click 'Basic'.
+  8.  Retreive your App ID and App Secret from this page. **DO NOT SHARE THESE!** They act as your app's credentials on the Facebook OAuth server!
+  9.  Click the "PRODUCTS +" button on the left-side navigation bar.
+  10. Find "Facebook Login" in the list of available products and click the "Set Up" button.
+  11. Choose "Web".
+  12. Enter your Site URL, such as "https://jimtough.org", then click "Save".
+  13. "Facebook Login" should now appear under the "PRODUCTS +" in the left-side navigation bar. Under it, click "Settings".
+  14. Enter the OAuth Redirect URI that you want to use for your application, such as "https://api.jimtough.org/". Facebook wants a trailing slash in the URI. Click "Save Changes".
+  15. Go to https://www.urlencoder.org/ and generate the encoded form of my redirect URL. Example: `https%3A%2F%2Fapi.jimtough.org%2F`
+  
 
 
 
