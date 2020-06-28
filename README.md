@@ -24,7 +24,7 @@ I took a Udemy course on OAuth 2.0 and kept my notes and other files in this rep
 
 ## Resource Server
 
-* Holds resources
+* Holds resources (on behalf of the Resource Owner)
 * Protects resources
 * Makes resources available via an API
 
@@ -43,12 +43,14 @@ I took a Udemy course on OAuth 2.0 and kept my notes and other files in this rep
 
 Input Query Parameters:
 * state
+  * This field will be echoed back in the response from the OAuth server, for use by the Client (the app) when reconciling requests with responses
 * scope
 * response_type
   * Specifies if this request is for an Authorization Code or an Access Token
   * These two request types have different flows
 * client_id
-* redirect_url
+* redirect_uri
+  * This is the URI of the Client (the app) service that will receive the responses from the OAuth server 
 
 Output:
 * Authorization Code (for Authorization Code Grant)
@@ -138,6 +140,46 @@ Authorization: Bearer {AccessToken}
 * Upon successful registration, the Client will receive:
    * ClientID
    * ClientSecret
+
+----
+
+# Overview of OAuth Flows
+
+* Authorization Code Grant
+  * Most secure OAuth flow
+  * Sometimes referred to as '3-legged OAuth'
+  * Best choice if the Client (the app) has secure storage for ClientID and ClientSecret
+* Implicit Grant
+  * Must be used when the Client (the app) **does not** have secure storage for ClientID, ClientSecret and OAuth Tokens
+    * example: Client-side JavaScript Client app
+  * OAuth server will issue OAuth tokens with a shorter validity period
+  * Token refresh is difficult (or not possible)
+* Client Credentials Grant
+  * Sometimes referred to as '2-legged OAuth'
+  * Used when the Client (the app) is also the Resource Owner
+* Resource Owner Password Credentials Grant
+  * Used when the Resource Owner has trusted the Client (the app) with their username/password
+
+## Authorization Code Grant flow
+
+Sometimes referred to as '3-legged OAuth', because it checks the identity of the three involved actors:
+  * OAuth servers
+  * Resource Owner
+  * Client (the app)
+  
+How?
+  * The OAuth server authenticates the Resource Owner by username and password. 
+    * These are provided interactively by the Resource Owner.
+  * The OAuth server authenticates the Client by its ClientID and ClientSecret.
+    * These are transmitted in the HTTP header.
+    * HTTP BASIC authorization mechanism is used
+  * OAuth server identity is verified by a Certificate Authority (CA)
+
+High-level steps:
+  * Get the Authorization Code
+  * Get the Token
+  * Use the Token to Access a Resource
+
 
 
 
